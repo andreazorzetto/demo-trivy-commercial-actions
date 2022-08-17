@@ -1,3 +1,3 @@
-FROM caddy:2.4.0
+FROM caddy:latest
 
 ADD index.html /usr/share/caddy/index.html

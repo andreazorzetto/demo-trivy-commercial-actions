@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "docker-scanner" ]
+    branches: [ "test-scan-successful" ]
   pull_request:
-    branches: [ "docker-scanner" ]
+    branches: [ "test-scan-successful" ]
 
 env:
   # Registry name as configured in Aqua integrations
