@@ -21,6 +21,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-demo-image:${{ github.sha }}
 
+      # The following 2 steps can be replaced building the scanner cli within the builder image
     - name: Get Aquasec commercial scanner
       run: wget --user ${{ secrets.AQUAREG_USER }} --password ${{ secrets.AQUAREG_PSWD }} https://download.aquasec.com/scanner/2022.4/scannercli
 
