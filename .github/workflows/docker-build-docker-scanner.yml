@@ -21,6 +21,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-demo-image:${{ github.sha }}
 
+      # This step can be replaced pulling the scanner from a local registry
     - name: Docker login Aqua Registry
       run: docker login registry.aquasec.com -u ${{ secrets.AQUAREG_USER }} -p ${{ secrets.AQUAREG_PSWD }}
 
