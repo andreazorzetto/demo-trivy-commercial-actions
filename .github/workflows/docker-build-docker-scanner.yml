@@ -25,7 +25,7 @@ jobs:
       run: docker login registry.aquasec.com -u ${{ secrets.AQUAREG_USER }} -p ${{ secrets.AQUAREG_PSWD }}
 
     - name: Scan image
-      run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan -H ${{ secrets.AQUA_SERVER }} -n -A {{ secrets.TOKEN }} --local --text --register-compliant --registry $IMAGE_REGISTRY my-demo-image:${{ github.sha }}
+      run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan -H ${{ secrets.AQUA_SERVER }} -n -A ${{ secrets.TOKEN }} --local --text --register-compliant --registry $IMAGE_REGISTRY my-demo-image:${{ github.sha }}
 
     - name: Tag image with Registry
       run: docker tag my-demo-image:${{ github.sha }} $IMAGE_REGISTRY/my-demo-image:${{ github.sha }}
