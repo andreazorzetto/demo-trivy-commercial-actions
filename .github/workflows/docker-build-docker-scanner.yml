@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-demo-image:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag andreazorzetto/my-demo-image:${{ github.sha }}
 
       # This step can be replaced pulling the scanner from a local registry
     - name: Docker login Aqua Registry
@@ -29,7 +29,7 @@ jobs:
       # image is registered if found compliant (--register-compliant) as belonging to the final registry (--registry).
       # the --local flag indicates a locally built image not available in the registry yet
     - name: Scan image
-      run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan -H ${{ secrets.AQUA_SERVER }} -n -A ${{ secrets.TOKEN }} --local --text --register-compliant --registry $IMAGE_REGISTRY my-demo-image:${{ github.sha }}
+      run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan -H ${{ secrets.AQUA_SERVER }} -n -A ${{ secrets.TOKEN }} --local --text --register-compliant --registry $IMAGE_REGISTRY andreazorzetto/my-demo-image:${{ github.sha }}
 
     - name: Tag image with Registry
       run: docker tag my-demo-image:${{ github.sha }} $IMAGE_REGISTRY/my-demo-image:${{ github.sha }}
