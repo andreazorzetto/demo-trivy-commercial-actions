@@ -8,8 +8,8 @@ on:
 
 env:
   # Registry name as configured in Aqua integrations
-  IMAGE_REGISTRY: dh-az-1
-  SCANNER_VERSION: 2405.22.9
+  IMAGE_REGISTRY: "dh-az-1"
+  SCANNER_VERSION: "2405.22.9"
 
 jobs:
 
