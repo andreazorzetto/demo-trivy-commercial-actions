@@ -8,7 +8,9 @@ on:
 
 env:
   # Registry name as configured in Aqua integrations
-  IMAGE_REGISTRY: 'dh-andreazorzetto'
+  IMAGE_REGISTRY: "dh-az-1"
+  SCANNER_VERSION: "2405.22.9"
+  
 
 jobs:
 
@@ -23,7 +25,7 @@ jobs:
 
       # The following 2 steps can be replaced building the scanner cli within the builder image
     - name: Get Aquasec commercial scanner
-      run: wget --user ${{ secrets.AQUAREG_USER }} --password ${{ secrets.AQUAREG_PSWD }} https://download.aquasec.com/scanner/2022.4/scannercli
+      run: wget --user ${{ secrets.AQUAREG_USER }} --password ${{ secrets.AQUAREG_PSWD }} https://download.aquasec.com/scanner/$SCANNER_VERSION/scannercli
 
     - name: Executable permissions
       run: chmod +x scannercli
