@@ -8,7 +8,8 @@ on:
 
 env:
   # Registry name as configured in Aqua integrations
-  IMAGE_REGISTRY: 'dh-az-1'
+  IMAGE_REGISTRY: dh-az-1
+  SCANNER_VERSION: 2405.22.9
 
 jobs:
 
@@ -32,7 +33,7 @@ jobs:
       # image is registered if found compliant (--register-compliant) as belonging to the final registry (--registry).
       # the --local flag indicates a locally built image not available in the registry yet
     - name: Scan image
-      run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan -H ${{ secrets.AQUA_SERVER }} -n -A ${{ secrets.TOKEN }} --local --text --register-compliant --registry $IMAGE_REGISTRY my-demo-image:${{ github.sha }}
+      run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:$SCANNER_VERSION scan -H ${{ secrets.AQUA_SERVER }} -n -A ${{ secrets.TOKEN }} --local --text --register-compliant --registry $IMAGE_REGISTRY my-demo-image:${{ github.sha }}
 
 
     - name: Push to Registry
